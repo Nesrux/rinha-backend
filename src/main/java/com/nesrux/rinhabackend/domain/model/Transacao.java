@@ -25,6 +25,7 @@ public class Transacao {
     private String descricao;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_transacao", nullable = false, length = 1)
     private TipoTransacao tipoTransacao;
 
     @Column(name = "realizada_em", nullable = false, updatable = false)
@@ -32,7 +33,8 @@ public class Transacao {
     private LocalDateTime realizadaEm;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id",
+            foreignKey = @ForeignKey(name = "FK_cliente_transacao"))
     private Cliente cliente;
 
     public enum TipoTransacao {
