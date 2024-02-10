@@ -1,0 +1,13 @@
+networks:
+  rinha-network:
+    driver: bridge
+
+services:
+  db-rinha:
+    image: 'mysql:8.0'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=rinha123'
+    ports:
+      - '3306:3306'
+    networks:
+     - rinha-network
