@@ -9,20 +9,17 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "cliente", indexes = @Index(name = "idx_io", columnList = "id"))
+@Table(name = "cliente", indexes = @Index(name = "idx_id", columnList = "id"))
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente {
     @Id
     private Long id;
 
-    private Integer limite;
-
-    @Column(name = "saldo", scale = 2)
-    private BigDecimal saldo;
-
-
     @OneToMany(mappedBy = "cliente", orphanRemoval = true)
     private Set<Transacao> transacoes = new LinkedHashSet<>();
+
+    @OneToOne(mappedBy = "cliente", orphanRemoval = true)
+    private Saldo saldo;
 
 }
